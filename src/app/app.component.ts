@@ -1,7 +1,7 @@
 import { Component, VERSION } from '@angular/core';
 
 @Component({
-  selector: 'my-app',
+  selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
 })
@@ -16,6 +16,13 @@ export class AppComponent {
   ];
   imgUrl = 'https://angular.io/assets/images/logos/angular/logo-nav@2x.png';
   imgAlt = 'Logo de Angular';
+
+  addCity(cityName: string, countryName: string): void {
+    this.cities.push({
+      name: cityName,
+      country: countryName,
+    });
+  }
 
   onCityClicked(cityName: String): void {
     this.selection = cityName;
