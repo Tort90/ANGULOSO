@@ -1,4 +1,35 @@
-<hello name="{{ name }}"></hello>
-<p>
-  Start editing to see some magic happen :)
-</p>
+<hello control name="{{ name }}" *ngIf="name"></hello>
+<h2>{{ title }}</h2>
+<img [src]="imgUrl" alt="{{ imgAlt }}" />
+<p>Start editing to see some magic happen :)</p>
+<input control type="text" [(ngModel)]="name" />
+
+<ul *ngFor="let city of cities">
+  <li
+    (click)="onCityClicked(city.name)"
+    [ngClass]="{
+      selected: city.name === 'Lima',
+      blue: city.name !== 'Lima'
+    }"
+  >
+    {{ city.name }}<span *ngIf="city.country">, {{ city.country }}</span>
+  </li>
+  <!-- <li
+    [ngClass]="{
+      selected: city.name === 'Lima',
+      blue: city.name !== 'Lima'
+    }"
+  >
+    {{ city.name }}<span *ngIf="city.country">, {{ city.country }}</span>
+  </li> -->
+</ul>
+
+<div *ngIf="selection">
+  <p>Your city is: {{ selection }}</p>
+  <!-- <button  (click)="onClear()">Clear</button> -->
+  <app-button
+    (click)="onClear()"
+    [color]="'blue'"
+    [label]="'Clear your selection'"
+  ></app-button>
+</div>
